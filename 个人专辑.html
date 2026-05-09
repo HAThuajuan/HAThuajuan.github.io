@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火星演唱会</title>
+    <link rel="stylesheet" href="个人专辑.css">
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[name="link-tab"]');
+        const labels = document.querySelectorAll('.link-label');
+
+        function updateActive() {
+            const checkedId = document.querySelector('input[name="link-tab"]:checked')?.id;
+            labels.forEach(label => {
+                if (label.getAttribute('for') === checkedId) {
+                    label.classList.add('active');
+                } else {
+                    label.classList.remove('active');
+                }
+            });
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', updateActive);
+        });
+
+        updateActive();
+    });
+</script>
+
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="演唱会logo.png" alt="火星演唱会" class="logo-img">
+        </div>
+        <ul  class="nav-links">
+            <li><a href="首页.html">首页</a></li>
+            <li><a href="歌手简介.html">歌手简介</a></li>
+            <li><a href="往年回顾.html">往年回顾</a></li>
+            <li><a href="个人专辑.html" class="active">个人专辑</a></li>
+            <li><a href="荣誉奖项.html">荣誉奖项</a></li>
+        </ul>
+    </nav>
+
+        <nav class="background">
+            <ul class="link">
+                <li>
+                    <label for="one" class="link-label" data-tab="one">
+                        <img src="卡西莫多的礼物.jpg" alt="卡西莫多的礼物" class="link-img">
+                        <span class="link-name"><strong>卡西莫多的礼物</strong></span>
+                    </label>
+                </li>
+                <li>
+                    <label for="two" class="link-label" data-tab="two">
+                        <img src="异类.jpg" alt="异类" class="link-img">
+                        <span class="link-name"><strong>异类</strong></span>
+                    </label>
+                </li>
+                <li>
+                    <label for="three" class="link-label" data-tab="three">
+                        <img src="H.jpg" alt="H" class="link-img">
+                        <span class="link-name"><strong>H</strong></span>
+                    </label>
+                </li>
+                <li>
+                    <label for="four" class="link-label" data-tab="four">
+                        <img src="新世界.jpg" alt="新世界" class="link-img">
+                        <span class="link-name"><strong>新世界NEW WORLD</strong></span>
+                    </label>
+                </li>
+                <li>
+                    <label for="five" class="link-label" data-tab="five">
+                        <img src="希忘.jpg" alt="希忘" class="link-img">
+                        <span class="link-name"><strong>希忘Hope</strong></span>
+                    </label>
+                </li>
+                <li>
+                    <label for="six" class="link-label" data-tab="six">
+                        <img src="量变临界点.jpg" alt="量变临界点" class="link-img">
+                        <span class="link-name"><strong>量变临界点</strong></span>
+                    </label>
+                </li>
+            </ul>
+        </nav>
+
+        <input type="radio" name="link-tab" id="one" checked hidden>
+        <input type="radio" name="link-tab" id="two" hidden>
+        <input type="radio" name="link-tab" id="three" hidden>
+        <input type="radio" name="link-tab" id="four" hidden>
+        <input type="radio" name="link-tab" id="five" hidden>
+        <input type="radio" name="link-tab" id="six" hidden>
+
+    <div class="guodu">
+        <div class="intro" data-tab="one">
+            <div class="intro-img">
+                <img src="卡西莫多的礼物.jpg" alt="卡西莫多的礼物">
+            </div>
+            <div class="intro-text">
+                                &emsp;&emsp;你还会不会唱快乐的歌，如果知道人世残酷；
+                                <br>&emsp;&emsp;你还会不会说悲伤的话，如果一切都非无缘无故。 
+                                <br>&emsp;&emsp;如果诚实，令人不安；但我不会别的，那该怎么办？
+                                <br>&emsp;&emsp;如果生活不是误解，就是无解；
+                                <br>&emsp;&emsp;那么，冲突、冶艳、惊悚、悲伤，
+                                <br>&emsp;&emsp;都不如随意的大大方方。 
+                                <br>&emsp;&emsp;也许，好音乐都是从无字和乱弹开始的。
+                                <br>&emsp;&emsp;关于我的答案，只有不求甚解，和赤裸裸的歌唱，
+                                <br>&emsp;&emsp;关于我从来都不在 ing 的状态里，请原谅。 
+                                <br>&emsp;&emsp;繁星夏夜，另翼清朗；认领好音乐，就听华晨宇。
+                                <br>&emsp;&emsp;骑鲸渡海，花花少年，在你最近的枕边，在你最远的远方。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;Why Nobody Fights</p>
+                        <p class="time">4:03</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;微光（Shimmer）</p>
+                        <p class="time">4:26</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;Let You Go</p>
+                        <p class="time">4:16</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;烟火里的尘埃（Ashes From Fireworks）</p>
+                        <p class="time">5:21</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;拆弹专家</p>
+                        <p class="time">2:47</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;环游</p>
+                        <p class="time">4:00</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;我们都是孤独的（All Lonely）</p>
+                        <p class="time">4:03</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;不朽（Eternity）</p>
+                        <p class="time">3:23</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;9&emsp;&emsp;&nbsp;卡西莫多的礼物（Quasimodo's Gift）</p>
+                        <p class="time">3:34</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;10&emsp;&emsp;枕边故事</p>
+                        <p class="time">4:23</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+        <div class="intro" data-tab="two">
+            <div class="intro-img">
+                <img src="异类.jpg" alt="异类">
+            </div>
+            <div class="intro-text">
+                    &emsp;&emsp;《异类》作为华晨宇第二张个人大碟，收录11首歌曲，总共有7首华晨宇的原创作品，曲风涵盖pop，摇滚，古典，说唱等；专辑风格在霸气、深情、搞怪、温柔中变焕，首首好听，制作精良，呈现出一个多面的鬼才精灵华晨宇。
+                    <br>&emsp;&emsp;《异类》整张专辑的制作人是新锐才华音乐人郑楠，从华晨宇个人第一张专辑合作到第二张，两人碰撞出更多的新声火花。部分歌曲的混音邀请了荣获过12项葛莱美奖的美国大师级混音师ken lewis 做混音。专辑MASTER工程则请到了美国顶级母带处理工程师Joe LaPorta。可见此次唱片，精工细作，是名副其实的大师级制作阵容，心血之作，诚意出击。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;我管你</p>
+                        <p class="time">4:26</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;国王与乞丐</p>
+                        <p class="time">4:05</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;蜉蝣</p>
+                        <p class="time">5:07</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;反义词</p>
+                        <p class="time">4:16</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;异类</p>
+                        <p class="time">3:28</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;逃离乌托邦</p>
+                        <p class="time">4:04</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;世界是个动物园</p>
+                        <p class="time">3:56</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;变相怪杰</p>
+                        <p class="time">3:19</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;9&emsp;&emsp;&nbsp;写给未来的孩子</p>
+                        <p class="time">5:19</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;10&emsp;&emsp;地球之盐</p>
+                        <p class="time">5:19</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;11&emsp;&emsp;忧伤的巨人</p>
+                        <p class="time">3:23</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+        <div class="intro" data-tab="three">
+            <div class="intro-img">
+                <img src="H.jpg" alt="H">
+            </div>
+            <div class="intro-text">
+                    &emsp;&emsp;华晨宇第三张专辑《H》，曲风涵盖New Age、pop、摇滚、抒情、说唱等，风格多变，品质精良，在听觉上让听众在不同的曲风中切换，给听众带来一个首首不同的华晨宇。专辑封面，简洁大气的黑白风延续了时尚感，封面随意的黑白线条也极具设计感，泼墨式的“指纹”状涂鸦线条诠释华晨宇的多变音乐风 。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;Here We Are</p>
+                        <p class="time">4:50</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;巨鹿</p>
+                        <p class="time">4:53</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;To Be Free</p>
+                        <p class="time">3:45</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;For Forever</p>
+                        <p class="time">4:40</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;我离孤单几公里</p>
+                        <p class="time">4:05</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;消失的昨天</p>
+                        <p class="time">3:47</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;造物者</p>
+                        <p class="time">3:11</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;我的滑板鞋2016</p>
+                        <p class="time">3:55</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+        <div class="intro" data-tab="four">
+            <div class="intro-img">
+                <img src="新世界.jpg" alt="新世界">
+            </div>
+            <div class="intro-text">
+                    &emsp;&emsp;睽违三年，华晨宇携全新创作专辑——《新世界NEW WORLD》归来。此次，华晨宇以“总监制”的身份深度参与新专辑的创作、创意及制作，试图为听众带来属于他的“全新世界”。本张专辑共收录8首华晨宇的原创作品，风格独特且多变，曲风涵盖摇滚、重金属、雷鬼、古风等。在制作方面，除包揽全部歌曲的作曲外，华晨宇还与知名制作人郑楠共同完成了大部分歌曲的编曲，并在每一首歌的作曲完成后，深度与词人沟通创作初衷，再由词人配合完成达意。因此，整张专辑具有浓厚的个人风格。
+                    <br>&emsp;&emsp;《新世界NEW WORLD》是属于华晨宇的“全新世界”，是他个人成长理念的融入，也是他全新音乐三观的传达。希望每个游历《新世界NEW WORLD》的听众也都能感受到华晨宇独一无二的音乐以及其中蕴藏的深意。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;斗牛</p>
+                        <p class="time">6:25</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;好想爱这个世界啊</p>
+                        <p class="time">4:18</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;疯人院</p>
+                        <p class="time">6:37</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;与火星的孩子对话</p>
+                        <p class="time">5:09</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;七重人格</p>
+                        <p class="time">6:34</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;神树</p>
+                        <p class="time">5:18</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;降临</p>
+                        <p class="time">4:23</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;新世界</p>
+                        <p class="time">5:51</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+        <div class="intro" data-tab="five">
+            <div class="intro-img">
+                <img src="希忘.jpg" alt="希忘">
+            </div>
+            <div class="intro-text">
+                    &emsp;&emsp;在这张全新专辑中，华晨宇提出了一个有哲学思辨意味的名称「希忘」。回顾世界历史，音乐和哲学确实有密切的关系，古希腊哲学家柏拉图曾在理想国中提到，音乐有对灵魂直接的影响。「哲学重要的是思考过程，不是那些答案。」 哲学（philosophy）的原始涵意是「爱与智慧」，是两个古希腊字「爱」（philia） 与「智慧」（sophia） 的结合，这种哲学精神近年常常出现在花花创作的音乐中。
+                    <br>&emsp;&emsp;就像他创作的《好想爱这个世界啊》，并不是在形容抑郁症是什么样子，而是希望透过这首歌让大家思考如何正向的看待这个世界，并且关心身边有类似症状的朋友；或是新专辑中的新歌《小镇里的花》，这是一首描写失去挚爱亲人的歌曲，却用充满诗意的文风，用山、河、飞鸟等意象架构出独特的音乐空间，让听者置身其中进行自我思辨。听华晨宇的歌，对他来说过程比结果重要，他没有要给听众任何答案，因为许多人生重要的议题并没有标准答案。「怎样才是成功的人生？ 」、「怎样才算幸福？ 」，这些哲学的经典问题从来没有任何人能提供标准答案，只能每个人亲自去成长和感受。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;飞行模式</p>
+                        <p class="time">4:25</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;小镇里的花</p>
+                        <p class="time">5:21</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;小镇里的花（民乐版）</p>
+                        <p class="time">5:37</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;黑白艺术家</p>
+                        <p class="time">5:24</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;好想我回来啊</p>
+                        <p class="time">5:04</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;花落时相遇</p>
+                        <p class="time">5:57</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;走，一起去看日出吧</p>
+                        <p class="time">4:35</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;向阳而生</p>
+                        <p class="time">5:49</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;9&emsp;&emsp;&nbsp;点燃银河尽头的篝火</p>
+                        <p class="time">5:07</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;10&emsp;&emsp;当全世界忘了我</p>
+                        <p class="time">5:22</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;11&emsp;&emsp;虚幻与现实</p>
+                        <p class="time">5:03</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+        <div class="intro" data-tab="six">
+            <div class="intro-img">
+                <img src="量变临界点.jpg" alt="量变临界点">
+            </div>
+            <div class="intro-text">
+                    &emsp;&emsp;生命的本质即是变化
+                    <br>&emsp;&emsp;持续向前 就能抵达通透的境界
+                    <br>&emsp;&emsp;欢迎来到量变临界点
+                    <br>&emsp;&emsp;迎接灵魂二度降生的起点
+                    <br><br>&emsp;&emsp;后来，我们什么都有了；不自觉停下脚步、忽略了生命的本质，就是不停的变化与向前。持续的出发是一场精准的概念：出发不见得能抵达，但若要抵达，则必须出发。华晨宇从温暖的支持与呵护之中，毅然选择横冲直撞、高速俯冲、强行再次破壳，最终迎来量变临界点----一个完全通透的境界。
+                    <br>&emsp;&emsp;在那里，依旧有悲伤、痛苦，也有温暖、幸福，然而透过宏观的通透视野，发现一切都只是必经的过程。有起必有落，有得必有失，感受当下，自我觉知，明白生命的变化从来都无法控制，我们能做的就是将其转化成能量，量变积累聚集成下一个临界点，静静等待爆发。这趟充满自我觉知的音乐旅程必须有你参与，因为你就是令量变产生质变的、无数临界点的唯一。
+            </div>
+            <div class="songs">
+                    <div class="songslink-header">
+                        <h2>专辑歌单</h2>
+                        <p class="timetitle"><strong>时长</strong></p>
+                    </div>
+                    <hr>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;1&emsp;&emsp;&nbsp;风之海</p>
+                        <p class="time">5:04</p>
+                    </div>
+                    <div class="songs-line"></div>
+                
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;2&emsp;&emsp;&nbsp;普通到不普通的人生</p>
+                        <p class="time">4:21</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;3&emsp;&emsp;&nbsp;那些我尚未知道的美丽</p>
+                        <p class="time">5:04</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;4&emsp;&emsp;&nbsp;永不熄灭的火焰（《和平精英》5周年主题曲）</p>
+                        <p class="time">5:39</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;5&emsp;&emsp;&nbsp;忒修斯的船</p>
+                        <p class="time">4:49</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;6&emsp;&emsp;&nbsp;怪诞心理学</p>
+                        <p class="time">3:48</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;7&emsp;&emsp;&nbsp;温暖的房子</p>
+                        <p class="time">5:41</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;8&emsp;&emsp;&nbsp;不重逢</p>
+                        <p class="time">5:37</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;&nbsp;9&emsp;&emsp;&nbsp;人之爱</p>
+                        <p class="time">5:35</p>
+                    </div>
+                    <div class="songs-line"></div>
+                    <div class="songs-text">
+                        <p class="name">&emsp;10&emsp;&emsp;晨光里有你</p>
+                        <p class="time">5:13</p>
+                    </div>
+                    <div class="songs-line"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
