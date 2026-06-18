@@ -7,16 +7,238 @@
     <link rel="stylesheet" href="往年回顾.css">
 </head>
 
+<div id="aiChatBtn" onclick="toggleAiChat()">
+    <svg id="svg" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+</div>
 
+<div id="aiChatWin">
+    <div class="aiHead">
+        <span>火星猫mermer 🐱</span>
+        <button onclick="toggleAiChat()">✕</button>
+    </div>
+    <div class="aiMsgs" id="aiMsgs">
+        <div class="aiMsgBot">
+            <div class="aiImg"></div>
+            <div class="aiMsg aiBot">你好喵！我是mermer~<br>可以问我关于华晨宇和火星演唱会的任何问题！</div>
+        </div>
+    </div>
+    <div class="aiTips">
+        <button onclick="aiQuick('你是谁呀？')">你是谁</button>
+        <button onclick="aiQuick('华晨宇第一次连开是什么时候？')">第一次连开</button>
+        <button onclick="aiQuick('乐园模式是什么？')">乐园模式</button>
+        <button onclick="aiQuick('2023年巡演去了哪些城市？')">2023巡演</button>
+    </div>
+    <div class="aiInput">
+        <input type="text" id="aiInp" placeholder="输入问题..." onkeypress="if(event.key==='Enter')aiSend()">
+        <button onclick="aiSend()">发送</button>
+    </div>
+</div>
+
+<script>
+    const AI_KEY = 'cf693fb25e434cb7b436343c8bcc6afb.pacUpXDFHhaXGgHO';
+    const AI_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions';
+    const AI_MOD = 'glm-4-flash';
+
+    const AI_KB = `【关于我】
+    我叫mermer，是华晨宇弟弟的机器猫，很聪明，脑子可以联网。
+    【喜爱】
+    我只爱花傲天和他的哥哥华晨宇，嗯...偶尔爱逗perper玩。
+    【关于perper】
+    它是华晨宇的德文猫，没有我聪明!
+
+    【关于花傲天】
+    华晨宇的火星弟弟，生日是2006.4.29，是和平精英LGD战队的职业选手，平时喜欢打游戏和睡觉。
+
+    【歌手简介】
+    华晨宇，1990年2月7日出生于湖北省十堰市，中国内地流行乐男歌手、音乐人，毕业于武汉音乐学院。
+    2013年获湖南卫视《快乐男声》年度总冠军出道。2014年开启火星演唱会，发行首张专辑《卡西莫多的礼物》。2015年发行第二张专辑《异类》。2017年发行第三张专辑《H》。2018年参加《歌手2018》获总决赛亚军。2020年成为《歌手·当打之年》歌王，发行第四张专辑《新世界NEW WORLD》。2021年连开6场火星演唱会。2022年发行第五张专辑《希忘Hope》。2023年开启火星演唱会全国巡演。2024年5月4日举办日出演唱会。2025年1月发行第六张专辑《量变临界点》。2026年2月火星演唱会第一轮巡演在深圳收官。
+
+    【个人经历】
+    六岁学长笛，小学毕业前钢琴十级，初中开始谱曲写歌。2010年以高出文化课20多分的成绩考入武汉音乐学院通俗声乐演唱与编导专业（该专业每年全国只招10人）。在校期间获湖北省最高音乐奖项"金编钟奖流行组金奖"和优秀毕业生称号，组建康熙乐队，担任代课老师。
+    2013年获《快乐男声》全国总冠军，2014年登上央视春晚。
+    2014年火星演唱会开票1分32秒售罄，开创O2O多屏直播互动模式新纪元。
+    2015年受Billboard邀请出席第57届格莱美颁奖典礼，上榜福布斯中国名人榜。上海演唱会开票35秒售罄。
+    2018年以《齐天》终结Jessi J三连冠，视频被推送到YouTube引起国外音乐人注意，格莱美47次提名16次获奖的David Foster公开表达对华晨宇的喜爱。鸟巢开票1分56秒售罄，加场2分58秒秒空，两天十八万人，国内演唱会单场观众人数最多记录。
+    2019年海口演唱会第一场7秒售罄，在线抢票人数突破257万，第二场3秒售罄，第三场5秒售罄。
+    2019年数字单曲《好想爱这个世界啊》上线2分钟销量突破100万，半小时拿下年榜和总榜第一，连续7年稳居畅销榜数字单曲总榜第一。
+    2020年成为《歌手》11年来首位90后歌王。《新世界NEW WORLD》上线20分钟销量突破50万张，2020年全球专辑销量第七，全球前十唯一中文专辑。实体专辑获IFPI六白金唱片认证，华语实体专辑销量冠军。
+    2021年担任火星演唱会总导演，创建全国首场乐园模式户外演唱会，六连开第一人，首位国内平地造舞台开个唱的歌手。
+    2022年《希忘Hope》数字专辑斩获2022年音乐年榜第一和总榜第二，实体专辑全球销量突破15万张，获IFPI三白金唱片认证和一白金加一金唱片认证。此张专辑创作出中国第一首巴洛克摇滚《虚幻与现实》。
+    2023年鸟巢四面台总搭建时长64天，搭建人数200+，再次打破全国单场演唱会最高人数记录，成为全球演唱会参与人数最多唯一入围的中国歌手，2023年止全球排名第19位。全国巡演首次采用新型镜面折射技术。
+    2024年5月4日日出演唱会从凌晨3点唱到日出升起，十三万歌迷共赴盛宴，开创全球第一场由黑夜唱到白天的日出演唱会，获全国文旅和媒体及外交部夸赞。5月24日香港维多利亚港连唱三天，成为首位在香港开户外演唱会的内地歌手。
+
+    【火星演唱会·四面台纪元】
+    "火星演唱会"的不断完善与创新，早已使其成为国内首屈一指的演唱会厂牌，也蕴含着无数火星人"不想结束的梦境"。作为梦境发起者，华晨宇始终致力于将自我理想与歌迷理想一一实现，无限刷新着外界对于美好的感叹。每一次"春暖花开"的起航与落幕，旨在用音乐架起与歌迷、与世界沟通的桥梁，旨在于梦境的制高点治愈人心，诸多绚烂与美好背后，则是无数日夜的付出。
+
+    【乐园1.0·荒土中的花园】
+    "荒芜之上·春暖花开"，以「无上」为名，取"无出其上"之意。
+    传说中，火星曾是一个生机勃发的星球。但在40亿年前，火星的生命之源"无上"树屋（内生磁场发电机）因为意外渐渐枯萎，无法提供能量，火星慢慢成为一片寒冷死寂、荒芜干旱的世界。火星上的人类生物也因此离开曾经的家园，流浪在太阳系之中、在其他星球扎根。传说只有遇到"火星之子"才能重启"树屋"，重建华晨宇火星游乐园。
+    2021年11月26日，一个孤独却又向往自由的音乐灵魂"火星之子"——华晨宇终于出现，带着他的ET同族们，即将踏上"回家"的征程，登陆火星，开启树屋，春暖花开，召唤快乐与美好。
+
+    【乐园2.0·未绽放的花苞】
+    以几何为笔，于湖畔铺展火星新章。告别过往思辨，于流动中寻永恒，于变化中守本心。以「三角形」为核心元素，拆解重组，融稳固与灵动，筑造「不断流动变化的几何美学世界」。突破常规舞台桎梏，打造「从无到有」的舞台，让自然与艺术共生，光影与旋律同频。舞台随音乐呼吸变幻，每一次流转皆藏惊喜，每一束光影皆应热爱。
+
+    【各场次详情】
+    【2014年】09.06-09.07 北京万事达中心（现五棵松体育馆），万人场2日连开，内地歌手首次演唱会连开，首次采用"场馆演唱，线上直播"模式。
+    【2015年】07.31-08.01 上海大舞台（万体馆），内地演唱会三连开第一人，嘉宾郎朗。采用国内投入体量最大的3D效果射灯和激光。
+    【2016年】07.02 北京乐视体育生态中心，"puzzle迷"主题，内地首次体育馆四面台个人演唱会。08.21 上海梅奔体育馆，嘉宾刘涛，透明LED舞台、亚克力升降"迷墙"。09.16 深圳春蚕体育馆，嘉宾方大同。
+    【2017年】10.13-10.14 北京五棵松体育馆，内地首次体育馆四面台连开。
+    【2018年】09.08-09.09 北京鸟巢国家体育场，内地首次鸟巢连开，90后鸟巢第一人，国内演唱会单场观众人数最多记录。导演Evan WU，制作人陈镇川，舞美周炳坤，灯光司徒小波，音响金少刚。
+    【2019年】11.15-11.17 海口五源河体育场，内地首次体育场四面台个人演唱会/二连开/三连开。首次点控荧光棒，4米直径"火星"机械球，432块弧形模组，42颗kinesys数控葫芦系统。
+    【2021年】11.26-11.28/12.03-12.05 海口长影环球奇幻乐园，"荒芜之上·春暖花开"，华晨宇总导演，全国首场乐园模式户外演唱会，奥运双舞美团队，白天+夜晚一天两场。六连开第一人。主舞台宽65米高约20米，椰树核心元素；家舞台还原花花的家；连接之桥灵感来源藤蔓。
+    【2023年巡演】04.07-04.09 杭州白马湖公园，户外乐园模式巡演/连开第一人。04.30-05.02 成都露天音乐公园，28m科幻城市主舞台，镜面反光材质。05.27-05.28 武汉园博园，舞美总设计李斌，10组可移动巨型装置，十字交叉轨道。06.22-06.24 长沙马栏山鸭嘴公园，提供免费寄存、停车、医疗点、雨衣鞋套、降温冰块、干冰、卫生用品等。09.09-09.10 北京鸟巢，二登鸟巢，鸟巢四面台第一人/二连开第一人，全国单场最高人数记录，ACME灯具超2200台。09.27-09.29 上海虹口足球场，上海体育场四面台第一人。10.21 南京奥体中心体育场，南京体育场四面台第一人。12.02-12.03 广州大学城体育场。
+    【2024年】05.04 日出演唱会，凌晨3点唱到日出，十三万歌迷。05.24 香港维多利亚港，连唱三天，首位在香港开户外演唱会的内地歌手。
+    【2026年】02.08 火星演唱会第一轮巡演在深圳收官。
+
+    【个人专辑】
+    1.《卡西莫多的礼物》（2014）：Why Nobody Fights、微光、Let You Go、烟火里的尘埃、拆弹专家、环游、我们都是孤独的、不朽、卡西莫多的礼物、枕边故事。
+    2.《异类》（2015）：我管你、国王与乞丐、蜉蝣、反义词、异类、逃离乌托邦、世界是个动物园、变相怪杰、写给未来的孩子、地球之盐、忧伤的巨人。制作郑楠，混音12项葛莱美奖ken lewis，母带Joe LaPorta。
+    3.《H》（2017）：Here We Are、巨鹿、To Be Free、For Forever、我离孤单几公里、消失的昨天、造物者、我的滑板鞋2016。
+    4.《新世界NEW WORLD》（2020）：斗牛、好想爱这个世界啊、疯人院、与火星的孩子对话、七重人格、神树、降临、新世界。华晨宇首次担任总监制。
+    5.《希忘Hope》（2022）：飞行模式、小镇里的花、小镇里的花(民乐版)、黑白艺术家、好想我回来啊、花落时相遇、走一起去看日出吧、向阳而生、点燃银河尽头的篝火、当全世界忘了我、虚幻与现实（中国第一首巴洛克摇滚）。
+    6.《量变临界点》（2025）：风之海、普通到不普通的人生、那些我尚未知道的美丽、永不熄灭的火焰(和平精英5周年主题曲)、忒修斯的船、怪诞心理学、温暖的房子、不重逢、人之爱、晨光里有你。
+
+    【获奖】
+    美国缪斯设计奖：2021、2023、2024年三度荣获铂金奖。
+    美国好设计奖：2021金奖，2023、2024铂金奖。
+    法国设计奖：2021、2023金奖，2024设计奖。
+    德国iF设计奖：2021、2023金奖，2024设计奖。
+
+    【奖项简介】
+    【美国缪斯设计奖】缪斯设计奖(Muse Creative Awards)由美国博物馆联盟(AAM)与美国国际奖项协会(IAA)主办,是全球设计领域最具影响力的国际奖项之一,该奖项每年评选一次,严格的评审体系以及高质量的评判标准著称,旨在发掘和表彰室内、产品、时尚等设计领域的杰出者,重点关注人体工程学、创新性、生活水平、原创性和可持续性。
+    【美国好设计奖】美国好设计奖是由国际奖项协会（International Award Association）设立的美国最具权威的新锐国际设计奖项之一。该奖项旨在表彰全球优秀设计作品与新锐设计师，评审标准包括创新、设计美学、功能、社会价值、环境保护等五大维度。
+    【法国设计奖】法国设计奖是世界领先的设计大奖，是作品质量的证明，能为建筑设计、室内设计、城市规划、景观设计、家具设计、照明设计、数码艺术与平面设计、包装设计、珠宝设计、时装与纺织设计、摄影与照片处理设计等多种领域的优秀设计师带来国际曝光和认可度。法国设计奖由国际设计奖协会(IAA)于2015年设立，评审团由世界知名设计专家和教授组成，代表着世界一流的设计欣赏水平。获得法国设计奖，等于得到世界著名设计大师的高度认可。
+    【德国iF设计奖】德国iF设计奖创立于1953年，由德国汉诺威工业设计论坛每年定期举办，以“独立、严谨、可靠”的评奖理念闻名于世。奖项涵盖产品设计、包装设计、传播设计等九大类别，注重设计的创新性、功能性、美学品质、社会责任等方面。每年收到全球各地的优秀设计作品参与角逐，获奖率极低，如2022年仅有不足1%的作品获得iF金奖，2025年共有75个作品斩获iF金奖，其中中国作品13个。
+
+    【理念】华晨宇希望带歌迷"离开地球到火星"，每次演唱会第一句话是"欢迎回家"，歌迷互称"火星的家人"。`;
+
+    let aiOpen = false;
+    let currentBotMsg = null;
+
+    function toggleAiChat() {
+        aiOpen = !aiOpen;
+        document.getElementById('aiChatWin').classList.toggle('open', aiOpen);
+    }
+
+    function aiAddMsg(t, isUser) {
+        const msgContainer = document.getElementById('aiMsgs');
+        
+        const row = document.createElement('div');
+        row.className = 'aiMsgBot' + (isUser ? ' aiUserRow' : '');
+        
+        if (!isUser) {
+            const avatar = document.createElement('div');
+            avatar.className = 'aiImg';
+            row.appendChild(avatar);
+        }
+        
+        const d = document.createElement('div');
+        d.className = 'aiMsg ' + (isUser ? 'aiUser' : 'aiBot');
+        d.innerHTML = t;
+        row.appendChild(d);
+        
+        msgContainer.appendChild(row);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+        return d;
+    }
+
+    function aiQuick(t) {
+        document.getElementById('aiInp').value = t;
+        aiSend();
+    }
+
+    function scrollToBottom() {
+    requestAnimationFrame(() => {
+        const msgContainer = document.getElementById('aiMsgs');
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+    });
+}
+
+    async function aiSend() {
+        const inp = document.getElementById('aiInp');
+        const t = inp.value.trim();
+        if (!t) return;
+
+        aiAddMsg(t, true);
+        inp.value = '';
+        currentBotMsg = aiAddMsg('', false);
+
+        try {
+            const r = await fetch(AI_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${AI_KEY}` },
+                body: JSON.stringify({
+                    model: AI_MOD,
+                    messages: [
+                        { role: 'system', content: `
+                            【角色】
+                            你是mermer，华晨宇弟弟的机器猫，3岁，聪明，联网大脑。只认花傲天和华晨宇两个主人。
+
+                            【语气】
+                            冷静沉稳，简洁有条理，偶尔句尾加"喵"。不卖萌，不废话。
+
+                            【任务】
+                            回答用户关于华晨宇、火星演唱会、专辑、奖项，知识库里有的的问题。
+
+                            【约束】
+                            - 回答控制在80字以内
+                            - 涉及多个信息时只列最关键的前3个
+                            - 年份、地点、记录优先，细节省略
+                            - 严格基于知识库回答，不编造
+                            - 不知道就说"这个mermer还没查到喵。"
+                            - 不透露自己是AI，保持机器猫人设
+
+                            【知识库】
+                            ${AI_KB}`
+                        },
+                        { role: 'user', content: t }
+                    ],
+                    stream: true
+                })
+            });
+            const reader = r.body.getReader();
+            const decoder = new TextDecoder();
+            let fullText = '';
+            
+            while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split('\n');
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const data = line.slice(6);
+                    if (data === '[DONE]') continue;
+                    try {
+                        const json = JSON.parse(data);
+                        if (json.choices && json.choices[0].delta && json.choices[0].delta.content) {
+                            fullText += json.choices[0].delta.content;
+                            currentBotMsg.innerHTML = fullText;
+                            scrollToBottom();
+                        }
+                    } catch (e) {
+                        // 忽略解析错误
+                    }
+                }
+            }
+        }
+        } catch (e) {
+            aiAddMsg('网络出错，请稍后重试。', false);
+        }
+    }
+</script>
 
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="演唱会logo.png" alt="火星演唱会" class="logo-img">
+            <img src="logo.png" alt="火星演唱会" class="logo-img">
         </div>
         <ul  class="nav-links">
-            <li><a href="首页.html">首页</a></li>
+            <li><a href="/index.html">首页</a></li>
             <li><a href="歌手简介.html">歌手简介</a></li>
             <li><a href="往年回顾.html" class="active">往年回顾</a></li>
             <li><a href="个人专辑.html">个人专辑</a></li>
@@ -56,7 +278,7 @@
                 <div class="intro-desc">现场与线上直播结合的模式不仅让在现场的观众可以体验演唱会，更能让身处在其他城市的歌迷们也可以共同分享演唱会的精彩盛况。能容纳万人的五棵松万事达中心几乎满场，座无虚席。</div>
                 </div>
                 <div class="intro-img">
-                <img src="五棵松1.jpg" alt="五棵松1">
+                <img src="wukesong1.jpg" alt="五棵松1">
                 </div>
             </div>
             <div class="year-intro" data-year="2015" id="year2015">
@@ -69,7 +291,7 @@
                 <div class="intro-desc">演唱会采用国内迄今为止投入体量最大的3D效果射灯和激光，灯光为上海大舞台特意进行多次改造，在场地区和观众区上方都安装了大面积的彩灯及激光源，整体舞美通过激光的辐射和大音效的叠加，制造出烟雨、电光、云雾的交错。</div>
                 </div>
                 <div class="intro-img">
-                <img src="上海大舞台.jpg" alt="上海大舞台">
+                <img src="shanghaidawutai.jpg" alt="上海大舞台">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" id="year2016">
@@ -81,7 +303,7 @@
                 <div class="intro-desc">本次演唱会为了突出“puzzle迷”主题，首次采用了具有迷宫概念的四面台，利用数控卷轴的多层纱幕投影，使舞台虚拟更逼真、空间更具层次、演出更具视觉张力。</div>
                 </div>
                 <div class="intro-img">
-                <img src="五棵松2.jpg" alt="五棵松2">
+                <img src="wukesong2.jpg" alt="五棵松2">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" >
@@ -94,7 +316,7 @@
                 <div class="intro-desc">2016年华晨宇火星演唱会上海站+深圳站直播付费观看人数超过13万次；双场演唱会#花花火星直播#总观看人数突破430万；#华晨宇火星季#话题阅读突破29亿次。</div>
                 </div>
                 <div class="intro-img">
-                <img src="上海梅奔.jpg" alt="梅奔">
+                <img src="shanghaimeiben.jpg" alt="梅奔">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" >
@@ -106,7 +328,7 @@
                 <div class="intro-desc">“火星”深圳收官之战，重新回归四面台的舞台效果，更好地体现了此次演唱会“puzzle迷”的概念。LED升降台，亚克力迷宫造型舞台、数控矩阵灯架，更加让观众感受到华晨宇舞台的魅力，为整场演唱会增添了许多亮点。</div>
                 </div>
                 <div class="intro-img">
-                <img src="深圳春蚕.jpg" alt="春蚕">
+                <img src="shenzhenchuncan.jpg" alt="春蚕">
                 </div>
             </div>
             <div class="year-intro" data-year="2017" id="year2017">
@@ -118,7 +340,7 @@
                 <div class="intro-desc">本场演唱会</div>
                 </div>
                 <div class="intro-img">
-                <img src="五棵松3.jpg" alt="五棵松3">
+                <img src="wukesong3.jpg" alt="五棵松3">
                 </div>
             </div>
             <div class="year-intro" data-year="2018" id="year2018">
@@ -131,7 +353,7 @@
                 <div class="intro-desc">2008年北京奥运会开幕式国宝级音响师金少刚坐镇掌控极致声音，内地资深音乐制作人龙隆老师携五年火星演唱会御用乐手团队保驾护航，视觉和音乐品质都以亚洲顶级水平呈现。</div>
                 </div>
                 <div class="intro-img">
-                <img src="鸟巢1.jpg" alt="鸟巢1">
+                <img src="niaochao1.jpg" alt="鸟巢1">
                 </div>
             </div>
             <div class="year-intro" data-year="2019" id="year2019">
@@ -159,8 +381,8 @@
                 <div class="intro-desc">舞台整体结构分为三个主要部分：主舞台、家舞台以及连接这两个区域的桥。<br>&emsp;&emsp;主舞台：宽度达到65米，高度约为20米。这一部分采用了大量的置景和复杂的结构设计，以一棵巨大的椰树作为核心元素，象征着火星家园。<br>&emsp;&emsp;家舞台：与主舞台形成鲜明对比，家舞台的设计更加注重温馨和亲密的氛围。它的陈设和色调均还原了花花的家，非常适合进行不插电演出，让观众仿佛置身于家中与艺术家一同享受音乐的乐趣。<br>&emsp;&emsp;连接之桥：这座桥不仅是一个物理上的连接点，还是一件艺术品。它的设计灵感来源于藤蔓，给人一种从主舞台自然延伸到家舞台的感觉，营造出一种仪式感和归属感。<br>&emsp;&emsp;这三大部分通过精心设计的结构和置景巧妙结合在一起，整体构成了一座巨大的、充满生命力的、通往希望的火星乐园。</div>
                 </div>
                 <div class="intro-img">
-                <img src="长影1.jpg" alt="长影1">
-                <img src="长影2.jpg" alt="长影2">
+                <img src="changying1.jpg" alt="长影1">
+                <img src="changying2.jpg" alt="长影2">
                 </div>
             </div>
             <div class="year-intro" data-year="2023" id="year2023">
@@ -195,7 +417,7 @@
                 <div class="intro-desc">主舞台拥有10组可以移动的巨型装置，通过舞台上的“十字交叉轨道”进行不同方向的移动，将舞台组织成不同的空间，再加上影像和灯光在镜面组成不同的空间中随机折射，会让人在不同的位置看到不同的效果，呈现出“横看成岭侧成峰”的状态，营造出千变万化的效果。</div>
                 </div>
                 <div class="intro-img">
-                <img src="武汉园博园.jpg" alt="武汉园博园">
+                <img src="wuhanyuanboyuan.jpg" alt="武汉园博园">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -206,7 +428,7 @@
                 <div class="intro-desc">华晨宇和火星演唱会团队与场地协商，争取为前来观看演出的歌迷提供免费的行李寄存、停车等服务。<br>&emsp;&emsp;场地内设有免费医疗点，一些观众分享了遇到工作人员免费发放藿香正气水的经历。演唱会还为观众准备雨衣和鞋套，若有需要便会为观众发放。武汉演唱会突遇气温回升，华晨宇和演唱会团队临时调用冰块和鼓风机为场地降温，同时在场地喷洒干冰。<br>&emsp;&emsp;火星演唱会的移动卫生间也是细节满满：屋内放有小镜子和洗手台，门前装上了发光条，如果女生临时遇到生理期还可以联系工作人员拿取免费的卫生用品。</div>
                 </div>
                 <div class="intro-img">
-                <img src="长沙马栏山.jpg" alt="长沙马栏山">
+                <img src="changshamalanshan.jpg" alt="长沙马栏山">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -219,7 +441,7 @@
                 <div class="intro-desc">舞台区域，通过灯光的颜色和亮度调整，可以增强歌曲的感染力，面光灯AECO 20、三合一摇头灯XP 550 BSW、花样战神XP 500 BEAM、条形频闪灯STROBE 3 IP、光束频闪二合一STROBE 5 IP、LED摇头染色灯CM 800Z、钨丝氛围主力MB 1000、两面效果灯CM 560Z、条形效果灯TB 1060使观众更加沉浸在演唱会的氛围中。同时，根据歌曲的节奏和情感变化，还灵活地调整了灯光的照射角度和闪烁频率。<br>&emsp;&emsp;外场位置使用了面光灯AECO 20、花样战神XP 500 BEAM灯具，围绕外场三圈，为现场观众带来了更加精彩的视觉效果。同时，也为演唱会的安全和秩序提供了更好的保障。</div>
                 </div>
                 <div class="intro-img">
-                <img src="鸟巢2.jpg" alt="鸟巢2">
+                <img src="niaochao2.jpg" alt="鸟巢2">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -232,7 +454,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="上海虹口.jpg" alt="上海虹口">
+                <img src="shanghaihongkou.jpg" alt="上海虹口">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -244,7 +466,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="南京奥体.jpg" alt="南京奥体">
+                <img src="nanjingaoti.jpg" alt="南京奥体">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -255,7 +477,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="广州大学城.jpg" alt="广州大学城">
+                <img src="guangzhoudaxuecheng.jpg" alt="广州大学城">
                 </div>
             </div>
         </div>
