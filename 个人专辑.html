@@ -251,20 +251,36 @@
 
         updateActive();
     });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const lazyImages = document.querySelectorAll("img[data-src]");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute("data-src");
+                    observer.unobserve(img);
+                }
+            });
+        });
+        lazyImages.forEach(img => observer.observe(img));
+    });
 </script>
 
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="火星演唱会" class="logo-img">
+            <img data-src="logo.png" alt="火星演唱会" class="logo-img" loading="lazy">
         </div>
         <ul  class="nav-links">
             <li><a href="/index.html">首页</a></li>
-            <li><a href="歌手简介.html">歌手简介</a></li>
-            <li><a href="往年回顾.html">往年回顾</a></li>
-            <li><a href="个人专辑.html" class="active">个人专辑</a></li>
-            <li><a href="荣誉奖项.html">荣誉奖项</a></li>
+            <li><a href="/歌手简介.html">歌手简介</a></li>
+            <li><a href="/往年回顾.html">往年回顾</a></li>
+            <li><a href="/个人专辑.html" class="active">个人专辑</a></li>
+            <li><a href="/荣誉奖项.html">荣誉奖项</a></li>
         </ul>
     </nav>
 
@@ -272,37 +288,37 @@
             <ul class="link">
                 <li>
                     <label for="one" class="link-label" data-tab="one">
-                        <img src="kaximoduo.jpg" alt="卡西莫多的礼物" class="link-img">
+                        <img data-src="kaximoduo.jpg" alt="卡西莫多的礼物" class="link-img" loading="lazy">
                         <span class="link-name"><strong>卡西莫多的礼物</strong></span>
                     </label>
                 </li>
                 <li>
                     <label for="two" class="link-label" data-tab="two">
-                        <img src="yilei.jpg" alt="异类" class="link-img">
+                        <img data-src="yilei.jpg" alt="异类" class="link-img" loading="lazy">
                         <span class="link-name"><strong>异类</strong></span>
                     </label>
                 </li>
                 <li>
                     <label for="three" class="link-label" data-tab="three">
-                        <img src="H.jpg" alt="H" class="link-img">
+                        <img data-src="H.jpg" alt="H" class="link-img" loading="lazy">
                         <span class="link-name"><strong>H</strong></span>
                     </label>
                 </li>
                 <li>
                     <label for="four" class="link-label" data-tab="four">
-                        <img src="xinshijie.jpg" alt="新世界" class="link-img">
+                        <img data-src="xinshijie.jpg" alt="新世界" class="link-img" loading="lazy">
                         <span class="link-name"><strong>新世界NEW WORLD</strong></span>
                     </label>
                 </li>
                 <li>
                     <label for="five" class="link-label" data-tab="five">
-                        <img src="xiwang.jpg" alt="希忘" class="link-img">
+                        <img data-src="xiwang.jpg" alt="希忘" class="link-img" loading="lazy">
                         <span class="link-name"><strong>希忘Hope</strong></span>
                     </label>
                 </li>
                 <li>
                     <label for="six" class="link-label" data-tab="six">
-                        <img src="liangbian.jpg" alt="量变临界点" class="link-img">
+                        <img data-src="liangbian.jpg" alt="量变临界点" class="link-img" loading="lazy">
                         <span class="link-name"><strong>量变临界点</strong></span>
                     </label>
                 </li>
@@ -319,7 +335,7 @@
     <div class="guodu">
         <div class="intro" data-tab="one">
             <div class="intro-img">
-                <img src="kaximoduo.jpg" alt="卡西莫多的礼物">
+                <img data-src="kaximoduo.jpg" alt="卡西莫多的礼物" loading="lazy">
             </div>
             <div class="intro-text">
                                 &emsp;&emsp;你还会不会唱快乐的歌，如果知道人世残酷；
@@ -395,7 +411,7 @@
         </div>
         <div class="intro" data-tab="two">
             <div class="intro-img">
-                <img src="yilei.jpg" alt="异类">
+                <img data-src="yilei.jpg" alt="异类" loading="lazy">
             </div>
             <div class="intro-text">
                     &emsp;&emsp;《异类》作为华晨宇第二张个人大碟，收录11首歌曲，总共有7首华晨宇的原创作品，曲风涵盖pop，摇滚，古典，说唱等；专辑风格在霸气、深情、搞怪、温柔中变焕，首首好听，制作精良，呈现出一个多面的鬼才精灵华晨宇。
@@ -467,7 +483,7 @@
         </div>
         <div class="intro" data-tab="three">
             <div class="intro-img">
-                <img src="H.jpg" alt="H">
+                <img data-src="H.jpg" alt="H" loading="lazy">
             </div>
             <div class="intro-text">
                     &emsp;&emsp;华晨宇第三张专辑《H》，曲风涵盖New Age、pop、摇滚、抒情、说唱等，风格多变，品质精良，在听觉上让听众在不同的曲风中切换，给听众带来一个首首不同的华晨宇。专辑封面，简洁大气的黑白风延续了时尚感，封面随意的黑白线条也极具设计感，泼墨式的“指纹”状涂鸦线条诠释华晨宇的多变音乐风 。
@@ -523,7 +539,7 @@
         </div>
         <div class="intro" data-tab="four">
             <div class="intro-img">
-                <img src="xinshijie.jpg" alt="新世界">
+                <img data-src="xinshijie.jpg" alt="新世界" loading="lazy">
             </div>
             <div class="intro-text">
                     &emsp;&emsp;睽违三年，华晨宇携全新创作专辑——《新世界NEW WORLD》归来。此次，华晨宇以“总监制”的身份深度参与新专辑的创作、创意及制作，试图为听众带来属于他的“全新世界”。本张专辑共收录8首华晨宇的原创作品，风格独特且多变，曲风涵盖摇滚、重金属、雷鬼、古风等。在制作方面，除包揽全部歌曲的作曲外，华晨宇还与知名制作人郑楠共同完成了大部分歌曲的编曲，并在每一首歌的作曲完成后，深度与词人沟通创作初衷，再由词人配合完成达意。因此，整张专辑具有浓厚的个人风格。
@@ -580,7 +596,7 @@
         </div>
         <div class="intro" data-tab="five">
             <div class="intro-img">
-                <img src="xiwang.jpg" alt="希忘">
+                <img data-src="xiwang.jpg" alt="希忘" loading="lazy">
             </div>
             <div class="intro-text">
                     &emsp;&emsp;在这张全新专辑中，华晨宇提出了一个有哲学思辨意味的名称「希忘」。回顾世界历史，音乐和哲学确实有密切的关系，古希腊哲学家柏拉图曾在理想国中提到，音乐有对灵魂直接的影响。「哲学重要的是思考过程，不是那些答案。」 哲学（philosophy）的原始涵意是「爱与智慧」，是两个古希腊字「爱」（philia） 与「智慧」（sophia） 的结合，这种哲学精神近年常常出现在花花创作的音乐中。
@@ -652,7 +668,7 @@
         </div>
         <div class="intro" data-tab="six">
             <div class="intro-img">
-                <img src="liangbian.jpg" alt="量变临界点">
+                <img data-src="liangbian.jpg" alt="量变临界点" loading="lazy">
             </div>
             <div class="intro-text">
                     &emsp;&emsp;生命的本质即是变化

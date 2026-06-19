@@ -229,20 +229,35 @@
             aiAddMsg('网络出错，请稍后重试。', false);
         }
     }
+ 
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyImages = document.querySelectorAll("img[data-src]");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute("data-src");
+                observer.unobserve(img);
+            }
+        });
+    });
+    lazyImages.forEach(img => observer.observe(img));
+});
 </script>
 
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="火星演唱会" class="logo-img">
+            <img  data-src="logo.png" alt="火星演唱会" class="logo-img" loading="lazy">
         </div>
         <ul  class="nav-links">
             <li><a href="/index.html">首页</a></li>
-            <li><a href="歌手简介.html">歌手简介</a></li>
-            <li><a href="往年回顾.html" class="active">往年回顾</a></li>
-            <li><a href="个人专辑.html">个人专辑</a></li>
-            <li><a href="荣誉奖项.html">荣誉奖项</a></li>
+            <li><a href="/歌手简介.html">歌手简介</a></li>
+            <li><a href="/往年回顾.html" class="active">往年回顾</a></li>
+            <li><a href="/个人专辑.html">个人专辑</a></li>
+            <li><a href="/荣誉奖项.html">荣誉奖项</a></li>
         </ul>
     </nav>
 
@@ -278,7 +293,7 @@
                 <div class="intro-desc">现场与线上直播结合的模式不仅让在现场的观众可以体验演唱会，更能让身处在其他城市的歌迷们也可以共同分享演唱会的精彩盛况。能容纳万人的五棵松万事达中心几乎满场，座无虚席。</div>
                 </div>
                 <div class="intro-img">
-                <img src="wukesong1.jpg" alt="五棵松1">
+                <img data-src="wukesong1.jpg" alt="五棵松1" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2015" id="year2015">
@@ -291,7 +306,7 @@
                 <div class="intro-desc">演唱会采用国内迄今为止投入体量最大的3D效果射灯和激光，灯光为上海大舞台特意进行多次改造，在场地区和观众区上方都安装了大面积的彩灯及激光源，整体舞美通过激光的辐射和大音效的叠加，制造出烟雨、电光、云雾的交错。</div>
                 </div>
                 <div class="intro-img">
-                <img src="shanghaidawutai.jpg" alt="上海大舞台">
+                <img data-src="shanghaidawutai.jpg" alt="上海大舞台" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" id="year2016">
@@ -303,7 +318,7 @@
                 <div class="intro-desc">本次演唱会为了突出“puzzle迷”主题，首次采用了具有迷宫概念的四面台，利用数控卷轴的多层纱幕投影，使舞台虚拟更逼真、空间更具层次、演出更具视觉张力。</div>
                 </div>
                 <div class="intro-img">
-                <img src="wukesong2.jpg" alt="五棵松2">
+                <img data-src="wukesong2.jpg" alt="五棵松2" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" >
@@ -316,7 +331,7 @@
                 <div class="intro-desc">2016年华晨宇火星演唱会上海站+深圳站直播付费观看人数超过13万次；双场演唱会#花花火星直播#总观看人数突破430万；#华晨宇火星季#话题阅读突破29亿次。</div>
                 </div>
                 <div class="intro-img">
-                <img src="shanghaimeiben.jpg" alt="梅奔">
+                <img data-src="shanghaimeiben.jpg" alt="梅奔" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2016" >
@@ -328,7 +343,7 @@
                 <div class="intro-desc">“火星”深圳收官之战，重新回归四面台的舞台效果，更好地体现了此次演唱会“puzzle迷”的概念。LED升降台，亚克力迷宫造型舞台、数控矩阵灯架，更加让观众感受到华晨宇舞台的魅力，为整场演唱会增添了许多亮点。</div>
                 </div>
                 <div class="intro-img">
-                <img src="shenzhenchuncan.jpg" alt="春蚕">
+                <img data-src="shenzhenchuncan.jpg" alt="春蚕" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2017" id="year2017">
@@ -340,7 +355,7 @@
                 <div class="intro-desc">本场演唱会</div>
                 </div>
                 <div class="intro-img">
-                <img src="wukesong3.jpg" alt="五棵松3">
+                <img data-src="wukesong3.jpg" alt="五棵松3" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2018" id="year2018">
@@ -353,7 +368,7 @@
                 <div class="intro-desc">2008年北京奥运会开幕式国宝级音响师金少刚坐镇掌控极致声音，内地资深音乐制作人龙隆老师携五年火星演唱会御用乐手团队保驾护航，视觉和音乐品质都以亚洲顶级水平呈现。</div>
                 </div>
                 <div class="intro-img">
-                <img src="niaochao1.jpg" alt="鸟巢1">
+                <img data-src="niaochao1.jpg" alt="鸟巢1" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2019" id="year2019">
@@ -381,8 +396,8 @@
                 <div class="intro-desc">舞台整体结构分为三个主要部分：主舞台、家舞台以及连接这两个区域的桥。<br>&emsp;&emsp;主舞台：宽度达到65米，高度约为20米。这一部分采用了大量的置景和复杂的结构设计，以一棵巨大的椰树作为核心元素，象征着火星家园。<br>&emsp;&emsp;家舞台：与主舞台形成鲜明对比，家舞台的设计更加注重温馨和亲密的氛围。它的陈设和色调均还原了花花的家，非常适合进行不插电演出，让观众仿佛置身于家中与艺术家一同享受音乐的乐趣。<br>&emsp;&emsp;连接之桥：这座桥不仅是一个物理上的连接点，还是一件艺术品。它的设计灵感来源于藤蔓，给人一种从主舞台自然延伸到家舞台的感觉，营造出一种仪式感和归属感。<br>&emsp;&emsp;这三大部分通过精心设计的结构和置景巧妙结合在一起，整体构成了一座巨大的、充满生命力的、通往希望的火星乐园。</div>
                 </div>
                 <div class="intro-img">
-                <img src="changying1.jpg" alt="长影1">
-                <img src="changying2.jpg" alt="长影2">
+                <img data-src="changying1.jpg" alt="长影1" loading="lazy">
+                <img data-src="changying2.jpg" alt="长影2" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023" id="year2023">
@@ -417,7 +432,7 @@
                 <div class="intro-desc">主舞台拥有10组可以移动的巨型装置，通过舞台上的“十字交叉轨道”进行不同方向的移动，将舞台组织成不同的空间，再加上影像和灯光在镜面组成不同的空间中随机折射，会让人在不同的位置看到不同的效果，呈现出“横看成岭侧成峰”的状态，营造出千变万化的效果。</div>
                 </div>
                 <div class="intro-img">
-                <img src="wuhanyuanboyuan.jpg" alt="武汉园博园">
+                <img data-src="wuhanyuanboyuan.jpg" alt="武汉园博园" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -428,7 +443,7 @@
                 <div class="intro-desc">华晨宇和火星演唱会团队与场地协商，争取为前来观看演出的歌迷提供免费的行李寄存、停车等服务。<br>&emsp;&emsp;场地内设有免费医疗点，一些观众分享了遇到工作人员免费发放藿香正气水的经历。演唱会还为观众准备雨衣和鞋套，若有需要便会为观众发放。武汉演唱会突遇气温回升，华晨宇和演唱会团队临时调用冰块和鼓风机为场地降温，同时在场地喷洒干冰。<br>&emsp;&emsp;火星演唱会的移动卫生间也是细节满满：屋内放有小镜子和洗手台，门前装上了发光条，如果女生临时遇到生理期还可以联系工作人员拿取免费的卫生用品。</div>
                 </div>
                 <div class="intro-img">
-                <img src="changshamalanshan.jpg" alt="长沙马栏山">
+                <img data-src="changshamalanshan.jpg" alt="长沙马栏山" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -441,7 +456,7 @@
                 <div class="intro-desc">舞台区域，通过灯光的颜色和亮度调整，可以增强歌曲的感染力，面光灯AECO 20、三合一摇头灯XP 550 BSW、花样战神XP 500 BEAM、条形频闪灯STROBE 3 IP、光束频闪二合一STROBE 5 IP、LED摇头染色灯CM 800Z、钨丝氛围主力MB 1000、两面效果灯CM 560Z、条形效果灯TB 1060使观众更加沉浸在演唱会的氛围中。同时，根据歌曲的节奏和情感变化，还灵活地调整了灯光的照射角度和闪烁频率。<br>&emsp;&emsp;外场位置使用了面光灯AECO 20、花样战神XP 500 BEAM灯具，围绕外场三圈，为现场观众带来了更加精彩的视觉效果。同时，也为演唱会的安全和秩序提供了更好的保障。</div>
                 </div>
                 <div class="intro-img">
-                <img src="niaochao2.jpg" alt="鸟巢2">
+                <img data-src="niaochao2.jpg" alt="鸟巢2" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -454,7 +469,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="shanghaihongkou.jpg" alt="上海虹口">
+                <img data-src="shanghaihongkou.jpg" alt="上海虹口" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -466,7 +481,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="nanjingaoti.jpg" alt="南京奥体">
+                <img data-src="nanjingaoti.jpg" alt="南京奥体" loading="lazy">
                 </div>
             </div>
             <div class="year-intro" data-year="2023">
@@ -477,7 +492,7 @@
                 <div class="intro-desc"></div>
                 </div>
                 <div class="intro-img">
-                <img src="guangzhoudaxuecheng.jpg" alt="广州大学城">
+                <img data-src="guangzhoudaxuecheng.jpg" alt="广州大学城" loading="lazy">
                 </div>
             </div>
         </div>

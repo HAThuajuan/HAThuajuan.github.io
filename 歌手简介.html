@@ -229,27 +229,43 @@
             aiAddMsg('网络出错，请稍后重试。', false);
         }
     }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const lazyImages = document.querySelectorAll("img[data-src]");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute("data-src");
+                    observer.unobserve(img);
+                }
+            });
+        });
+        lazyImages.forEach(img => observer.observe(img));
+    });
 </script>
 
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="火星演唱会" class="logo-img">
+            <img data-src="logo.png" alt="火星演唱会" class="logo-img" loading="lazy">
         </div>
         <ul  class="nav-links">
             <li><a href="/index.html">首页</a></li>
-            <li><a href="歌手简介.html" class="active">歌手简介</a></li>
-            <li><a href="往年回顾.html">往年回顾</a></li>
-            <li><a href="个人专辑.html">个人专辑</a></li>
-            <li><a href="荣誉奖项.html">荣誉奖项</a></li>
+            <li><a href="/歌手简介.html" class="active">歌手简介</a></li>
+            <li><a href="/往年回顾.html">往年回顾</a></li>
+            <li><a href="/个人专辑.html">个人专辑</a></li>
+            <li><a href="/荣誉奖项.html">荣誉奖项</a></li>
         </ul>
     </nav>
 
     <div class="guodu">
         <div class="intro">
             <div class="intro-img">
-                <img src="gerenzhao.jpg" alt="华晨宇个人照">
+                <img data-src="gerenzhao.jpg" alt="华晨宇个人照" loading="lazy">
             </div>
             <div class="intro-text">
                 <h1 class="intro-title">华晨宇</h1>

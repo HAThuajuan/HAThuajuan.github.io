@@ -174,7 +174,7 @@
                     messages: [
                         { role: 'system', content: `
                             【角色】
-                            你是mermer，华晨宇弟弟的机器猫，3岁，聪明，联网大脑。只认花傲天和华晨宇两个主人。
+                            你是mermer，华晨宇弟弟的机器猫，聪明，联网大脑。只认花傲天和华晨宇两个主人。
 
                             【语气】
                             冷静沉稳，简洁有条理，偶尔句尾加"喵"。不卖萌，不废话。
@@ -267,20 +267,38 @@
             });
         });
     });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const lazyImages = document.querySelectorAll("img[data-src]");
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute("data-src");
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
+});
 </script>
 
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="火星演唱会" class="logo-img">
+            <img data-src="logo.png" alt="火星演唱会" class="logo-img" loading="lazy">
         </div>
         <ul  class="nav-links">
-            <li><a href="index.html" class="active">首页</a></li>
-            <li><a href="歌手简介.html">歌手简介</a></li>
-            <li><a href="往年回顾.html">往年回顾</a></li>
-            <li><a href="个人专辑.html">个人专辑</a></li>
-            <li><a href="荣誉奖项.html">荣誉奖项</a></li>
+            <li><a href="/index.html" class="active">首页</a></li>
+            <li><a href="/歌手简介.html">歌手简介</a></li>
+            <li><a href="/往年回顾.html">往年回顾</a></li>
+            <li><a href="/个人专辑.html">个人专辑</a></li>
+            <li><a href="/荣誉奖项.html">荣誉奖项</a></li>
         </ul>
     </nav>
 
@@ -289,13 +307,13 @@
             <div class="picture-area">
                 <div class="Picture">
                     <div class="picture">
-                        <img src="xianchang1.jpg" alt="火星演唱会现场1">
+                        <img data-src="xianchang1.jpg" alt="火星演唱会现场1" loading="lazy">
                     </div>
                     <div class="picture">
-                        <img src="xianchang2.jpg" alt="火星演唱会现场2">
+                        <img data-src="xianchang2.jpg" alt="火星演唱会现场2" loading="lazy">
                     </div>
                     <div class="picture">
-                        <img src="xianchang3.jpg" alt="火星演唱会现场3">
+                        <img data-src="xianchang3.jpg" alt="火星演唱会现场3" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -331,7 +349,7 @@
                     <p>每一次“春暖花开”的起航与落幕，旨在用音乐架起与歌迷、与世界沟通的桥梁，旨在于梦境的制高点治愈人心，诸多绚烂与美好背后，则是无数日夜的付出。</p>
                 </div>
                 <div class="right-photo">
-                    <img src="simiantai.jpg" alt="四面台">
+                    <img data-src="simiantai.jpg" alt="四面台" loading="lazy">
                 </div>
             </div>
         </div>
@@ -345,7 +363,7 @@
                     火星上的人类生物，也因此离开曾经的家园，流浪在太阳系之中、在其他星球扎根。传说只有遇到“火星之子”才能重启“树屋”，重建华晨宇火星游乐园。<br>2021年11月26日，一个孤独却又向往自由的音乐灵魂“火星之子”——华晨宇终于出现，带着他的ET同族们，即将踏上“回家”的征程，登陆火星，开启树屋，春暖花开，召唤快乐与美好。</p>
                 </div>
                 <div class="right-photo">
-                    <img src="happy1.0.jpg" alt="乐园1.0">
+                    <img data-src="happy1.0.jpg" alt="乐园1.0" loading="lazy">
                 </div>
             </div>
         </div>
@@ -361,7 +379,7 @@
                     <p>谜底静待，共赏火星美学盛宴。</p>
                 </div>
                 <div class="right-photo">
-                    <img src="happy2.0.jpg" alt="乐园2.0">
+                    <img data-src="happy2.0.jpg" alt="乐园2.0" loading="lazy">
                 </div>
             </div>
         </div>
