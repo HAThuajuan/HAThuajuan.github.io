@@ -238,9 +238,20 @@ body::before{
     border-bottom: 1px solid rgba(255, 80, 48, 0.4);
 }
 
-.logo-img {
+.logo {
+    width: 250px;
     height: 100px;
-    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     filter: brightness(1.05);
 }
 .nav-links {
@@ -266,7 +277,25 @@ body::before{
     border-bottom-color: #ff6347;
     text-shadow: 0 0 4px rgba(255, 99, 71, 0.5);
 }
-
+@media (max-width: 768px){
+    .logo{
+        width: 125px;
+        height: 50px;
+    }
+    .logo-img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .nav-links{
+        gap: 1.5rem;
+        margin-right: 1rem;
+    }
+    .nav-links a{
+        font-size: 11px;
+        font-weight: 50;
+    }
+}
 
 .guodu{
     animation: fadeIn 0.4s ease-in-out;
@@ -287,7 +316,7 @@ body::before{
     align-items: center;
     gap: 5rem;
     max-width: 100rem;
-    margin: 5rem auto;
+    margin: 3rem auto;
     padding: 0 2rem;
     flex-wrap: wrap;
 }
@@ -457,11 +486,37 @@ body::before{
 @media (max-width: 768px) {
     .area {
         flex-direction: column;
+        gap: 2rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
     }
     .left-img-miu {
-        max-width: 100%;
+        width: 60%;
+        margin: 0 auto;
+    }
+    .left-img-hao {
+        width: 75%;
+        margin: 0 auto;
+    }
+    .left-img-fa {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .left-img-if {
+        width: 55%;
+        margin: 0 auto;
+        margin-top: 0;
     }
     .right-text {
         margin-left: 0;
+        width: 100%;
+        padding: 1.5rem;
+    }
+    .right-text h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    .right-text p {
+        font-size: 0.85rem;
     }
 }

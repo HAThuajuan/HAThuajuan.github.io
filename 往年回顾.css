@@ -232,9 +232,20 @@ body::before{
     border-bottom: 1px solid rgba(255, 80, 48, 0.4);
 }
 
-.logo-img {
+.logo {
+    width: 250px;
     height: 100px;
-    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     filter: brightness(1.05);
 }
 .nav-links {
@@ -260,7 +271,25 @@ body::before{
     border-bottom-color: #ff6347;
     text-shadow: 0 0 4px rgba(255, 99, 71, 0.5);
 }
-
+@media (max-width: 768px){
+    .logo{
+        width: 125px;
+        height: 50px;
+    }
+    .logo-img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .nav-links{
+        gap: 1.5rem;
+        margin-right: 1rem;
+    }
+    .nav-links a{
+        font-size: 11px;
+        font-weight: 50;
+    }
+}
 
 
 .guodu{
@@ -279,6 +308,18 @@ body::before{
     padding: 1rem 20px;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+.main-line {
+    position: absolute;
+    left: 58px;
+    top: -75px;
+    bottom: 0;
+    width: 10px;
+    background: rgba(255, 99, 71, 0.694);
+    pointer-events: none;
+    z-index: 5;
+    animation: lineFadeIn 0.4s ease-in-out;
 }
 
 .timeline{
@@ -327,6 +368,34 @@ body::before{
     background: rgba(255, 99, 71, 0.3);
     transform: scale(1.05);
 }
+@media (max-width:768px){
+    .years{
+        margin-top: 15px;
+        max-width: 1000px;
+    }
+    .main-line{
+        left: 30px;
+        top: -68px;
+        width: 4px;
+        z-index: 1;
+    }
+    .timeline{
+        height: 3px;
+        width: 700px;
+    }
+    .years-links{
+        gap: 1.5rem;
+        justify-content: flex-start;
+    }
+    .tab-year{
+        width: 40px;
+        height: 40px;
+        font-size: 0.5rem;
+    }
+}
+
+
+
 
 input[name="year-tab"]{
     display: none;
@@ -342,17 +411,6 @@ input[name="year-tab"]{
     padding: 0 20px;
 }
 
-.main-line {
-    position: absolute;
-    left: 130px;
-    top: 220px;
-    bottom: 0;
-    width: 10px;
-    background: rgba(255, 99, 71, 0.694);
-    pointer-events: none;
-    z-index: 5;
-    animation: lineFadeIn 0.4s ease-in-out;
-}
 
 @keyframes lineFadeIn {
     from {
@@ -460,21 +518,38 @@ input[name="year-tab"]{
 
 
 @media(max-width: 768px){
-    .main-line{
-        left: 80px;
-    }
     .year-intro{
-        padding-left: 100px;
+        flex-direction: column;
+        padding-left: 80px;
     }
     .timeline-dot{
-        left: 80px;
-        width: 40px;
+        left: 12px;
+        width: 47px;
         top: 1rem;
+        height: 3px;
+    }
+    .timeline-dot::before{
+        width: 15px;
+        height: 15px;
     }
     .intro{
-        padding: 0.8rem 1rem;
+        padding: 1.2rem 1rem;
+        width: 300px;
+        margin-top: -35px;
     }
     .intro-time{
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    .intro-place{
+        font-size: 0.9rem;
+    }
+    .intro-dot{
+        font-size: 0.8rem;
+    }
+    .intro-desc{
+        font-size: 0.7rem;
+    }
+    .intro-img img{
+        max-width: 108%;
     }
 }

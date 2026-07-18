@@ -174,15 +174,15 @@
 
 @media (max-width: 480px) {
     #aiChatBtn{
-        bottom: 30px;
-        right: 30px;
-        height: 52px;
-        width: 52px;
+        bottom: 50px;
+        right: 50px;
+        height: 62px;
+        width: 62px;
     }
 
     #svg{
-        height:26px;
-        width: 26px;
+        height:30px;
+        width: 30px;
     }
 
     #aiChatWin {
@@ -228,9 +228,20 @@ body::before{
     border-bottom: 1px solid rgba(255, 80, 48, 0.4);
 }
 
-.logo-img {
+.logo {
+    width: 250px;
     height: 100px;
-    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     filter: brightness(1.05);
 }
 .nav-links {
@@ -255,6 +266,26 @@ body::before{
     color: #ff6347;
     border-bottom-color: #ff6347;
     text-shadow: 0 0 4px rgba(255, 99, 71, 0.5);
+}
+
+@media (max-width: 768px){
+    .logo{
+        width: 125px;
+        height: 50px;
+    }
+    .logo-img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .nav-links{
+        gap: 1.5rem;
+        margin-right: 1rem;
+    }
+    .nav-links a{
+        font-size: 11px;
+        font-weight: 50;
+    }
 }
 
 
@@ -358,11 +389,21 @@ body::before{
 @media (max-width: 768px) {
     .mars-showcase {
         flex-direction: column;
-        margin-top: 1rem;
-        gap: 1rem;
+        margin-top: 0rem;
+        gap: 0rem;
     }
-    .Intro-area {
-        text-align: center;
+    .picture-area{
+        margin-top: -2rem;
+        min-width:350px
+    }
+    .Intro-area h2{
+        font-size: 1.5rem;
+    }
+    .intro{
+        font-size: 1rem;
+    }
+    .Intro-area p{
+        font-size: 0.7rem;
     }
 }
 
@@ -457,10 +498,29 @@ body::before{
 }
 
 @media(max-width: 768px){
+    .choose-links{
+        gap: 0.8rem;
+    }
+    .choose-links label{
+        padding: 0.4rem 1rem;
+        font-size: 12px;
+    }
     .columns{
         flex-direction: column;
     }
     .right-photo{
         order: 2;
+    }
+    .in-tro h2{
+        font-size: 1rem;
+    }
+    .in-tro p{
+        font-size: 0.8rem;
+    }
+    .right-photo img{
+        align-items: center;
+
+        max-width: 90%;
+        border-radius: 20px;
     }
 }
